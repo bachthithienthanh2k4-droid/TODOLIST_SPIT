@@ -4,3 +4,8 @@ export interface IUser{
     fullName: string;
     role: string;
 }
+export interface IUserMessage{
+    message: string;
+    statusCode: number;
+    data: IUser[] | IUser;
+}

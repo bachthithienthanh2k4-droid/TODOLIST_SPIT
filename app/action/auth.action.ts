@@ -14,17 +14,9 @@ export const login = async(data: Ilogin) => {
   const fromdata = await response.json();
 
   if (response.ok) {
-    const result = fromdata.data as ILoginReponse
-    if (result) {
-      const cookieStore = await cookies();
-      cookieStore.set({
-        name: "accesstoken",
-        value: result.accessToken
-      });
-      cookieStore.set({
-        name: "refreshtoken",
-        value: result.refreshToken
-      });
+    const result = fromdata.data as ILoginReponse;
+    if (result !=null) {
+      (await cookies()).set("accessToken", result.accessToken);
     }
   }
 

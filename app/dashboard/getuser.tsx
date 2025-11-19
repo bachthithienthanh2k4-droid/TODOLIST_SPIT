@@ -20,7 +20,7 @@ export default function GetUsers({ userData }: DashboardProps) {
                     </tr>
                 </thead>
                 <tbody>
-                    {(userData || []).map((user) => (
+                    {userData?.map((user) => (
                         <tr key={user.id}>
                             <td>{user.id}</td>
                             <td>{user.username}</td>

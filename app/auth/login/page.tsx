@@ -25,10 +25,10 @@ export default function LoginPages() {
       const deviceId = getOrCreateDeviceId();
 
       const data: Ilogin = {
-        username: e.username,
-        password: e.password,
+        username: username,
+        password: password,
         deviceId: deviceId,
-        rememberMe: e.remember || false,
+        rememberMe: rememberMe,
       };
 
       const response = await login(data);
@@ -64,7 +64,6 @@ export default function LoginPages() {
             required
           />
         </Form.Group>
-
         <Form.Group className="mb-3" controlId="formPassword">
           <Form.Label>Mật khẩu</Form.Label>
           <Form.Control
