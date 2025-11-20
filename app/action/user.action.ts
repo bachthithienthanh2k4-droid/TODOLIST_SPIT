@@ -5,7 +5,7 @@ import { IIdenxResponse } from "../types/global";
 
 export const getUsers = async () => {
     const response = await fetch(`${process.env.NEXT_PUBLIC_API_WAN}/users`, {
-        method: "POST",
+        method: "GET",
         headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${(await cookies()).get("accessToken")?.value}`

@@ -4,7 +4,7 @@ import { Ilogin, ILoginReponse, ILoginResult, IRegister } from "../types/auth";
 import { IBaseResponse, IShowResponse } from "../types/global";
 
 export const login = async(data: Ilogin) => {
-  const response = await fetch( `${process.env.NEXT_PUBLIC_API_WAN}/auth/register`, {
+  const response = await fetch( `${process.env.NEXT_PUBLIC_API_WAN}/auth/login`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),
