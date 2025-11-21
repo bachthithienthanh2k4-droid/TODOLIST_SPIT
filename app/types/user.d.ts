@@ -1,7 +1,7 @@
 export interface IUser{
-    id: string;
+    id: number;
     username: string;
-    fullName: string;
+    fullname: string;
     role: string;
 }
 export interface IUserMessage{
