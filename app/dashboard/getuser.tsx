@@ -1,23 +1,25 @@
 "use client";
-import { Button, Table } from "react-bootstrap";
+import { Button, Form, Table } from "react-bootstrap";
 import { IUser } from "../types/user";
 import { FaEdit, FaEye, FaTrash } from "react-icons/fa";
 import { FaDeleteLeft } from "react-icons/fa6";
 import UpdateUser from "./updateuser";
 import { useState } from "react";
 import DeleteUser from "./deleteuser";
+import FindUser from "./finduser";
 
 interface DashboardProps {
     userData: IUser[];
 }
 
 export default function GetUsers({ userData }: DashboardProps) {
-    const [ShowModalUpdate, setShowModalUpdate] =  useState<boolean>(false);
+    const [ShowModalUpdate, setShowModalUpdate] = useState<boolean>(false);
     const [selectedUser, setSelectedUser] = useState<IUser | null>(null);
-    const [ShowModalDelete, setShowModalDelete] =  useState<boolean>(false);
+    const [ShowModalDelete, setShowModalDelete] = useState<boolean>(false);
+    const [filteredUsers, setFilteredUsers] = useState<IUser[]>(userData);
     return (
         <>
-            <div>Trang chủ</div>
+            <FindUser userData={userData} setFilteredUsers={setFilteredUsers} />
             <Table striped bordered hover>
                 <thead>
                     <tr>
@@ -28,7 +30,7 @@ export default function GetUsers({ userData }: DashboardProps) {
                     </tr>
                 </thead>
                 <tbody>
-                    {userData?.slice().sort((a, b) => Number(a.id) - Number(b.id)).map((user) => (
+                    {filteredUsers?.slice().sort((a, b) => Number(a.id) - Number(b.id)).map((user) => (
                         <tr key={user.id}>
                             <td>{user.id}</td>
                             <td>{user.username}</td>
@@ -61,18 +63,18 @@ export default function GetUsers({ userData }: DashboardProps) {
                     ))}
                 </tbody>
             </Table>
-            <UpdateUser 
+            <UpdateUser
                 ShowModalUpdate={ShowModalUpdate}
                 setShowModalUpdate={setShowModalUpdate}
                 user={selectedUser}
-                setUser={setSelectedUser} 
-             />
-             <DeleteUser 
+                setUser={setSelectedUser}
+            />
+            <DeleteUser
                 ShowModalDelete={ShowModalDelete}
                 setShowModalDelete={setShowModalDelete}
                 user={selectedUser}
                 setUser={setSelectedUser}
-                 />
+            />
         </>
     );
 }

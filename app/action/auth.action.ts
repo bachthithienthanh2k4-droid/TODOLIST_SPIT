@@ -42,3 +42,24 @@ export const Register = async (data: IRegister) => {
       ...fromdata,
     } as IBaseResponse;
 };
+export const logout = async () => {
+    const accessToken = (await headers()).get("authorization")?.replace("Bearer ", "") || (await cookies()).get("accessToken")?.value || "";
+
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_WAN}/auth/logout`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application  /json",
+        "Authorization": `Bearer ${accessToken}`,
+      },
+    }); 
+    const fromdata = await response.json();
+
+    if (response.ok) {
+      (await cookies()).delete("accessToken");
+    }
+    return {
+      ok: response.ok,
+      status: response.status,
+      ...fromdata,
+    } as IBaseResponse;
+}

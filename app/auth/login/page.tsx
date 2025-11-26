@@ -8,6 +8,7 @@ import { login } from "../../action/auth.action";
 import Link from "next/link";
 import { getOrCreateDeviceId } from "@/app/types/deviceId";
 import { Ilogin } from "@/app/types/auth";
+import { toast } from "react-toastify";
 
 export default function LoginPages() {
   const router = useRouter();
@@ -34,7 +35,7 @@ export default function LoginPages() {
       const response = await login(data);
 
       if (response.ok) {
-        alert("Đăng nhập thành công");
+        toast.success("Đăng nhập thành công");
         router.push("/dashboard");
       } else {
         setError(response.message || "Đăng nhập không thành công");
@@ -101,10 +102,6 @@ export default function LoginPages() {
           Tạo tài khoản
         </Button>
       </Form>
-
-      <Link href="/dashboard" className="d-block text-center mt-3">
-        Trang chủ
-      </Link>
     </Container>
   );
 }

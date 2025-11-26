@@ -19,7 +19,7 @@ export const getUsers = async () => {
         data: data.data as IUser[],
     } as IIdenxResponse<IUser>;
 }
-export const getUserById = async( id: string ) => {
+export const getUserById = async( id: number ) => {
     const response = await fetch(`${process.env.NEXT_PUBLIC_API_WAN}/users/${id}`, {
         method: "GET",
         headers: {
